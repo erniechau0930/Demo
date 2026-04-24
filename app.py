@@ -24,7 +24,7 @@ st.write(f"You selected: {option}")
 # Submit button
 if st.button("Submit"):
     # Display entered values
-
+    st.write(f"Your monthly sales target is {value}")
 
 
     # Success message
