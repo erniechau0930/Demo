@@ -8,8 +8,7 @@ st.write("Please enter the monthly sales target and select the region")
 
 # Number input for sales target
 sales_target = st.number_input("Enter monthly sales target (in USD):",
-                      min_value=0,
-                      max_value=50000)
+                      min_value=0)
 st.write(f"Your monthly sales target is {sales_target}")
 
 # Dropdown for region selection
