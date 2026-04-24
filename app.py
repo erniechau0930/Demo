@@ -22,7 +22,7 @@ st.write(f"You selected: {region}")
 # Submit button
 if st.button("Submit"):
     # Display entered values
-    st.write(f"Your monthly sales target is {value}")
+    st.write(f"Your monthly sales target is {sales_target}")
     st.write(f"You selected: {region}")
 
 
