@@ -2,7 +2,7 @@ import streamlit as st
 
 st.title("Welcome to Streamlit!")
 
-st.write("**Bold Text** and *Italic Text*")
+st.write("**Bottlers FC** and *Haaland*")
 
 st.header("Section 1: Introduction")
 
