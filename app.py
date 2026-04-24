@@ -1,16 +1,34 @@
 import streamlit as st
+# Title and Header
+st.title("**Retail Business Dashboard**")
+st.header("**Manager Input Selection**")
 
-st.title("Streamlit Demo App")
-st.header("User Input Section")
+# Instruction
+st.write("Please enter the monthly sales target and select the rehgion")
 
-st.write("Please provide your details below:")
-
-age = st.number_input("Enter your age:",
+# Number input for sales target
+st.number_input()
+age = st.number_input("Enter monthly sales target (in USD):",
                       min_value=0,
-                      max_value=120,
+                      max_value=50000,
                       value=25)
-color = st.selectbox("Choose your favorite color:",
-                     ["Red", "Blue", "Green"])
+st.write(f"Your age is {age}")
 
+# Dropdown for region selection
+st.selectbox()
+option = st.selectbox("Select region:",
+                      ["North", "East", "South", "West"])
+st.write(f"You selected: {option}")
+
+
+# Submit button
 if st.button("Submit"):
-    st.success(f"Thank you! Age: {age}, Favorite Color: {color}")
+    # Display entered values
+
+
+
+    # Success message
+st.success("Operation completed successfully!")
+
+
+    # Extra message for ambitious target
