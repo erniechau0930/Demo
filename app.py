@@ -1,32 +1,69 @@
-# business_app.py
 import streamlit as st
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Title of the app
-st.title("Business Data Dashboard")
+# -------------------------------
+# Title and Description
+# -------------------------------
+st.title("📊 Business Sales Dashboard")
+st.write("Analyze monthly sales data interactively!")
 
-# Introduction text
-st.write("This dashboard helps visualize sales data over time.")
+# -------------------------------
+# Sample Data
+# -------------------------------
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+sales = np.random.randint(5000, 20000, size=12)
+expenses = np.random.randint(3000, 15000, size=12)
 
-# Sample data
-date_rng = pd.date_range(start='1/1/2023', end='12/31/2023', freq='ME')
-df = pd.DataFrame(date_rng, columns=['date'])
-df['sales'] = np.random.randint(100, 500, size=(len(date_rng)))
+data = pd.DataFrame({
+    "Month": months,
+    "Sales": sales,
+    "Expenses": expenses
+})
 
-# Data visualization with Streamlit
-st.subheader("Monthly Sales Data")
-st.line_chart(df.set_index('date'))
+# -------------------------------
+# Sidebar Filters
+# -------------------------------
+st.sidebar.header("Filters")
+selected_months = st.sidebar.multiselect("Select Months", months,
+                                         default=months)
+show_expenses = st.sidebar.checkbox("Show Expenses", value=True)
 
-# Adding a slider for user input
-sales_threshold = st.slider("Sales threshold", 100, 500, 300)
+# Filter data
+filtered_data = data[data["Month"].isin(selected_months)]
 
-# Filtering and displaying data based on user input
-filtered_data = df[df['sales'] >= sales_threshold]
-st.write(f"Months with sales above {sales_threshold}")
-st.write(filtered_data)
+# -------------------------------
+# Display Data Table
+# -------------------------------
+st.subheader("Filtered Data")
+st.dataframe(filtered_data)
 
+# -------------------------------
+# Interactive Chart
+# -------------------------------
+st.subheader("Sales Chart")
+fig, ax = plt.subplots()
+ax.plot(filtered_data["Month"], filtered_data["Sales"],
+        marker='o', label="Sales")
+if show_expenses:
+    ax.plot(filtered_data["Month"], filtered_data["Expenses"],
+            marker='o', label="Expenses")
+ax.set_title("Monthly Performance")
+ax.set_xlabel("Month")
+ax.set_ylabel("Amount ($)")
+ax.legend()
+st.pyplot(fig)
+
+# -------------------------------
+# KPI Metrics
+# -------------------------------
+st.subheader("Key Metrics")
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Sales", f"${filtered_data['Sales'].sum():,.0f}")
+col2.metric("Total Expenses", f"${filtered_data['Expenses'].sum():,.0f}")
+col3.metric("Profit", f"${(filtered_data['Sales'].sum() - filtered_data['Expenses'].sum()):,.0f}")
 
 
 
