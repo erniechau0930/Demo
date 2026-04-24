@@ -1,33 +1,24 @@
 import streamlit as st
-# Title and Header
-st.title("**Retail Business Dashboard**")
-st.header("**Manager Input Selection**")
 
-# Instruction
-st.write("Please enter the monthly sales target and select the region")
+# Title
+st.title("Basic Web Calculator")
 
-# Number input for sales target
-sales_target = st.number_input("Enter monthly sales target (in USD):",
-                      min_value=0)
-st.write(f"Your monthly sales target is {sales_target}")
+# Input fields
+num1 = st.number_input("Enter first number", value=0.0)
+num2 = st.number_input("Enter second number", value=0.0)
 
-# Dropdown for region selection
-region = st.selectbox("Select region:",
-                      ["North", "East", "South", "West"])
-st.write(f"You selected: {region}")
+# Operation selection
+operation = st.selectbox("Choose operation", ["Add", "Subtract", "Multiply", "Divide"])
 
+# Calculate
+if st.button("Calculate"):
+    if operation == "Add":
+        result = num1 + num2
+    elif operation == "Subtract":
+        result = num1 - num2
+    elif operation == "Multiply":
+        result = num1 * num2
+    elif operation == "Divide":
+        result = num1 / num2 if num2 != 0 else "Error: Division by zero"
 
-# Submit button
-if st.button("Submit"):
-    # Display entered values
-    st.write(f"Your monthly sales target is {sales_target}")
-    st.write(f"You selected: {region}")
-
-
-    # Success message
-    st.success("Dashboard Updated successfully!")
-
-
-    # Extra message for ambitious target
-if sales_target > 100000:
-        st.write("Great! You have set an ambitious target!")
+    st.success(f"Result: {result}")
