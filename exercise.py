@@ -19,7 +19,7 @@ with st.form(key = "my_form"):
                 f.write(f"{first_name},{last_name},{favorite_number}\n")
             st.success(f"Registration Success!")
           
-st.header("### Registered Contacts")
+st.header("Registered Contacts")
 
 try:
     with open("contacts.csv", "r") as f:
