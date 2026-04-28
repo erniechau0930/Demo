@@ -1,6 +1,4 @@
 import streamlit as st
-import panda as pd
-import os
 
 
 st.title("Contact Info Collector App")
