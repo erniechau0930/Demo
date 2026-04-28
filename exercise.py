@@ -13,7 +13,7 @@ with st.form(key = "my_form"):
   if st.form_submit_button("Register"):
     if first_name.strip() == "" or last_name.strip() == "":
             st.error("Please enter both your first and last name!")
-        else:
+    else:
             st.success(f"Registration Success,Thank you!")
             with open("contacts.csv", "a") as f:
                 f.write(f"{first_name},{last_name},{favorite_number}\n")
