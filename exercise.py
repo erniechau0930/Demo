@@ -32,6 +32,11 @@ try:
             st.table(data_table)
         else:
             st.info("The file is empty.")
+    if st.button("Clear All Data"):
+      with open("contacts.csv", "w") as f:
+        pass
+      st.success("All data wiped!")
+      st.rerun()
 
 except FileNotFoundError:
     st.info("No contacts registered yet.")
