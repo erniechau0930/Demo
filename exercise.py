@@ -11,5 +11,5 @@ with st.form(key = "my_form"):
   favorite_number = st.number_input("Enter your favorite number:")
   
   if st.form_submit_button("Register"):
-    st.success
+    st.success(f"Registration Success,Thank you!")
 
