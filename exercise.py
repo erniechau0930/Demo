@@ -1,13 +1,15 @@
 import streamlit as st
 
 
-st.title("Streamlit Exercise")
+st.title("Contact Info Collector App")
+st.write("This app helps you collect Contact Info") 
+st.write("Please fill in the following form:")
 
 with st.form(key = "my_form"):
   first_name = st.text_input("Enter your first name:")
   last_name = st.text_input("Enter your last name:")
   favorite_number = st.number_input("Enter your favorite number:")
-  submitted = st.form_submit_button("Register")
-  if submitted:
-        st.success
+  
+  if st.form_submit_button("Register"):
+    st.success
 
