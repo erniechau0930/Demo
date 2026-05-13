@@ -22,8 +22,10 @@ with col4:
     st.header("Q4 2024")
     st.write("Revenue: $1.6M")
 
+
+
 # Tabs Layout
-tab1, tab2, tab3 = st.tabs(["Sales Data", "Customer Insights", "Market Trends"])
+tab1, tab2, tab3, tab4, = st.tabs(["Sales Data", "Customer Insights", "Market Trends", "Market Performance",])
 with tab1:
     st.write("Content for Sales Data")
     sales_data = {
