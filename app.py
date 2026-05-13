@@ -1,47 +1,46 @@
+"import math
 import streamlit as st
 
-# Title
-st.title("Basic Web Calculator")
+st.header(""Scientific Functions"")
 
-# Input fields
-num1 = st.number_input("Enter first number", value=0.0)
-num2 = st.number_input("Enter second number", value=0.0)
+operation_sci = st.selectbox(
+    ""Choose scientific operation"", 
+    [""Square Root"", ""Power"", ""Sin"", ""Cos"", ""Tan""]
+)
 
-# Operation selection
-operation = st.selectbox("Choose operation", ["Add", "Subtract", "Multiply", "Divide"])
+# Dynamically change the primary label based on the operation
+if operation_sci in [""Sin"", ""Cos"", ""Tan""]:
+    value_label = ""Enter angle in degrees""
+else:
+    value_label = ""Enter base value""
 
-# Calculate
-if st.button("Calculate"):
-    if operation == "Add":
-        result = num1 + num2
-    elif operation == "Subtract":
-        result = num1 - num2
-    elif operation == "Multiply":
-        result = num1 * num2
-    elif operation == "Divide":
-        result = num1 / num2 if num2 != 0 else "Error: Division by zero"
+value = st.number_input(value_label, value=0.0)
 
-    st.success(f"Result: {result}")
-import math
+# Only show the second input if ""Power"" is selected
+result = None
+if operation_sci == ""Power"":
+    exponent = st.number_input(""Enter exponent (power)"", value=2.0)
+    if st.button(""Calculate""):
+        result = math.pow(value, exponent)
 
-st.header("Scientific Functions")
-operation_sci = st.selectbox("Choose scientific operation", ["Square Root", "Power", "Sin", "Cos", "Tan"])
+elif operation_sci == ""Square Root"":
+    if st.button(""Calculate""):
+        if value < 0:
+            st.error(""Cannot calculate square root of a negative number."")
+        else:
+            result = math.sqrt(value)
 
-value = st.number_input("Enter value", value=0.0)
-power = st.number_input("Enter power (if applicable)", value=2.0)
+else:  # Trig functions
+    if st.button(""Calculate""):
+        rad = math.radians(value)
+        if operation_sci == ""Sin"":
+            result = math.sin(rad)
+        elif operation_sci == ""Cos"":
+            result = math.cos(rad)
+        elif operation_sci == ""Tan"":
+            result = math.tan(rad)
 
-if st.button("Calculate Scientific"):
-    if operation_sci == "Square Root":
-        result = math.sqrt(value)
-    elif operation_sci == "Power":
-        result = math.pow(value, power)
-    elif operation_sci == "Sin":
-        result = math.sin(math.radians(value))
-    elif operation_sci == "Cos":
-        result = math.cos(math.radians(value))
-    elif operation_sci == "Tan":
-        result = math.tan(math.radians(value))
-
-    st.success(f"Result: {result}")
-
+# Display result if one was calculated
+if result is not None:
+    st.success(f""The {operation_sci} result is: {result}"")"
 
