@@ -1,45 +1,76 @@
-"import math
 import streamlit as st
+import time
 
-st.header(""Scientific Functions"")
+# Title
+st.title("Business Dashboard with Streamlit Layouts")
 
-operation_sci = st.selectbox(
-    ""Choose scientific operation"", 
-    [""Square Root"", ""Power"", ""Sin"", ""Cos"", ""Tan""]
-)
+# Objective
+st.write("Objective: To demonstrate the usage of columns, tabs, and dynamic containers in a business dashboard.")
 
-# Dynamically change the primary label based on the operation
-if operation_sci in [""Sin"", ""Cos"", ""Tan""]:
-    value_label = ""Enter angle in degrees""
-else:
-    value_label = ""Enter base value""
+# Columns Layout
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.header("Q1 2024")
+    st.write("Revenue: $1.2M")
+with col2:
+    st.header("Q2 2024")
+    st.write("Revenue: $1.5M")
+with col3:
+    st.header("Q3 2024")
+    st.write("Revenue: $1.3M")
 
-value = st.number_input(value_label, value=0.0)
+# Tabs Layout
+tab1, tab2, tab3 = st.tabs(["Sales Data", "Customer Insights", "Market Trends"])
+with tab1:
+    st.write("Content for Sales Data")
+    sales_data = {
+        "Q1 2024": "$1.2M",
+        "Q2 2024": "$1.5M",
+        "Q3 2024": "$1.3M",
+        "Q4 2024": "$1.6M"
+    }
+    for quarter, revenue in sales_data.items():
+        st.write(f"{quarter}: {revenue}")
+with tab2:
+    st.write("Content for Customer Insights")
+    customer_feedback = [
+        "Great service!",
+        "Very satisfied with the product quality.",
+        "Quick delivery and excellent support."
+    ]
+    for feedback in customer_feedback:
+        st.write(f"- {feedback}")
+with tab3:
+    st.write("Content for Market Trends")
+    market_trends = {
+        "Eco-friendly products": "Increasing demand",
+        "Online shopping": "Continued growth",
+        "Subscription services": "Rising popularity"
+    }
+    for trend, status in market_trends.items():
+        st.write(f"{trend}: {status}")
 
-# Only show the second input if ""Power"" is selected
-result = None
-if operation_sci == ""Power"":
-    exponent = st.number_input(""Enter exponent (power)"", value=2.0)
-    if st.button(""Calculate""):
-        result = math.pow(value, exponent)
+with st.expander("More Information"):
+    st.write("Additional details on data collection methods.")
+    st.write("Data was collected through surveys and sales reports.")
 
-elif operation_sci == ""Square Root"":
-    if st.button(""Calculate""):
-        if value < 0:
-            st.error(""Cannot calculate square root of a negative number."")
-        else:
-            result = math.sqrt(value)
+# Dynamic Containers
+placeholder = st.empty()
 
-else:  # Trig functions
-    if st.button(""Calculate""):
-        rad = math.radians(value)
-        if operation_sci == ""Sin"":
-            result = math.sin(rad)
-        elif operation_sci == ""Cos"":
-            result = math.cos(rad)
-        elif operation_sci == ""Tan"":
-            result = math.tan(rad)
+# Simulate loading data and updating the placeholder
+for i in range(5):
+    placeholder.write(f"Loading data... {i*20}% complete")
+    time.sleep(1)
 
-# Display result if one was calculated
-if result is not None:
-    st.success(f""The {operation_sci} result is: {result}"")"
+# Once loading is complete, display the final message
+placeholder.write("Data loading complete. Displaying business insights.")
+
+# Display dynamic business insights
+business_insights = [
+    "Revenue increased by 15% in Q1 2024.",
+    "Customer satisfaction improved by 10%.",
+    "Market trends show a growing demand for eco-friendly products."
+]
+for insight in business_insights:
+    placeholder.write(insight)
+    time.sleep(2)
