@@ -67,8 +67,7 @@ with st.expander("More Information"):
     with etab2:
         st.write("etab2")
     
-    for feedback in customer_feedback:
-        st.write(f"- {feedback}")
+
 
 # Dynamic Containers
 placeholder = st.empty()
