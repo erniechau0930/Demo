@@ -62,7 +62,7 @@ with st.expander("More Information"):
     st.write("Additional details on data collection methods.")
     st.write("Data was collected through surveys and sales reports.")
     etab1, etab2,= st.tabs(["Sales Data", "Customer Insights", "Market Trends", "Market Performance",])
-    with etab1:
+with etab1:
     st.write("Content for Sales Data")
     sales_data = {
         "Q1 2024": "$1.2M",
@@ -72,7 +72,7 @@ with st.expander("More Information"):
     }
     for quarter, revenue in sales_data.items():
         st.write(f"{quarter}: {revenue}")
-    with etab2:
+with etab2:
     st.write("Content for Customer Insights")
     customer_feedback = [
         "Great service!",
