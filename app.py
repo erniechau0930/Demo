@@ -1,11 +1,11 @@
 import math
 import streamlit as st
 
-st.header(""Scientific Functions"")
+st.header("Scientific Functions")
 
 operation_sci = st.selectbox(
     ""Choose scientific operation"", 
-    [""Square Root"", ""Power"", ""Sin"", ""Cos"", ""Tan""]
+    ["Square Root"", ""Power"", ""Sin"", ""Cos"", ""Tan"]
 )
 
 # Dynamically change the primary label based on the operation
@@ -23,21 +23,21 @@ if operation_sci == ""Power"":
     if st.button(""Calculate""):
         result = math.pow(value, exponent)
 
-elif operation_sci == ""Square Root"":
-    if st.button(""Calculate""):
+elif operation_sci == "Square Root":
+    if st.button("Calculate"):
         if value < 0:
-            st.error(""Cannot calculate square root of a negative number."")
+            st.error("Cannot calculate square root of a negative number.")
         else:
             result = math.sqrt(value)
 
 else:  # Trig functions
-    if st.button(""Calculate""):
+    if st.button("Calculate"):
         rad = math.radians(value)
-        if operation_sci == ""Sin"":
+        if operation_sci == "Sin":
             result = math.sin(rad)
-        elif operation_sci == ""Cos"":
+        elif operation_sci == "Cos":
             result = math.cos(rad)
-        elif operation_sci == ""Tan"":
+        elif operation_sci == "Tan":
             result = math.tan(rad)
 
 # Display result if one was calculated
