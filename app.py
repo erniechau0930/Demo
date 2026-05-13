@@ -61,6 +61,26 @@ with tab4:
 with st.expander("More Information"):
     st.write("Additional details on data collection methods.")
     st.write("Data was collected through surveys and sales reports.")
+    etab1, etab2,= st.tabs(["Sales Data", "Customer Insights", "Market Trends", "Market Performance",])
+    with etab1:
+    st.write("Content for Sales Data")
+    sales_data = {
+        "Q1 2024": "$1.2M",
+        "Q2 2024": "$1.5M",
+        "Q3 2024": "$1.3M",
+        "Q4 2024": "$1.6M"
+    }
+    for quarter, revenue in sales_data.items():
+        st.write(f"{quarter}: {revenue}")
+    with etab2:
+    st.write("Content for Customer Insights")
+    customer_feedback = [
+        "Great service!",
+        "Very satisfied with the product quality.",
+        "Quick delivery and excellent support."
+    ]
+    for feedback in customer_feedback:
+        st.write(f"- {feedback}")
 
 # Dynamic Containers
 placeholder = st.empty()
