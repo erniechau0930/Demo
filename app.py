@@ -8,7 +8,7 @@ st.title("Business Dashboard with Streamlit Layouts")
 st.write("Objective: To demonstrate the usage of columns, tabs, and dynamic containers in a business dashboard.")
 
 # Columns Layout
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4, = st.columns(4)
 with col1:
     st.header("Q1 2024")
     st.write("Revenue: $1.2M")
