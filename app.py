@@ -4,23 +4,23 @@ import streamlit as st
 st.header("Scientific Functions")
 
 operation_sci = st.selectbox(
-    ""Choose scientific operation"", 
-    ["Square Root"", ""Power"", ""Sin"", ""Cos"", ""Tan"]
+    "Choose scientific operation", 
+    ["Square Root", "Power", "Sin", "Cos", "Tan"]
 )
 
 # Dynamically change the primary label based on the operation
 if operation_sci in [""Sin"", ""Cos"", ""Tan""]:
-    value_label = ""Enter angle in degrees""
+    value_label = "Enter angle in degrees"
 else:
-    value_label = ""Enter base value""
+    value_label = "Enter base value"
 
 value = st.number_input(value_label, value=0.0)
 
 # Only show the second input if ""Power"" is selected
 result = None
-if operation_sci == ""Power"":
-    exponent = st.number_input(""Enter exponent (power)"", value=2.0)
-    if st.button(""Calculate""):
+if operation_sci == "Power":
+    exponent = st.number_input("Enter exponent (power)", value=2.0)
+    if st.button("Calculate"):
         result = math.pow(value, exponent)
 
 elif operation_sci == "Square Root":
