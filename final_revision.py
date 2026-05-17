@@ -30,8 +30,8 @@ with st.form(key="user_profile_form"):
     )
     st.write("format: st.selectbox(label, options), options is a list")
     
-    # 5. EVERY form MUST have a submit button
     submit_button = st.form_submit_button(label="Submit Profile")
+    st.write("st.form_submit_button(label) is not the same as st.button(label)")
 
 if submit_button:
     st.success(f"Form submitted successfully!")
@@ -47,10 +47,6 @@ st.columns()
 st.table()
 st.data_editor()
 st.dataframe()
-st.selectbox()
-st.text_input()
-st.number_input()
-st.form()
 st.bar_chart()
 st.form_submit_button()
 option_menu(menu_title= “”, options= [], icons=[], default_index=0)"""
