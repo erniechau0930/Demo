@@ -21,7 +21,7 @@ with st.form(key="user_profile_form"):
     st.write("This box is created with st.form")
     
     name = st.text_input("This is st.text_input", placeholder="e.g. Jane Doe")
-    st.write("format: st.text_input("text shown, default value")
+    st.write("format: st.text_input("text shown, default value")")
     
     age = st.number_input("Age", min_value=1, max_value=120, value=25)
     st.write("min_value and max_value keep the input within a realistic range")
