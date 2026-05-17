@@ -11,12 +11,10 @@ st.subheader("This is st.subheader")
 st.write("This is st.write")
 st.markdown("This is st.markdown You can make text **bold** with ""** text **"", *italicized* with ""* text *"", or ~~strikethrough~~ with ""~~ text ~~"".")
 st.markdown("""
-* Item 1
-* Item 2
-* Item 3
+* Item 1: Bullet point is made with "*"
+* Item 2: This can be done with st.markdown, or st.write
 """)
-st.markdown(" * Item 1 ")
-st.write(" * Item 1 ")
+
 
 """st.file_uploader()
 st.tabs()
