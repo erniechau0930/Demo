@@ -14,7 +14,8 @@ st.markdown("""
 * Item 1: Bullet point is made with *
 * Item 2: This can be done with st.markdown, or st.write
 """)
-
+if st.button("This is st.button):
+  st.success("This is st.success")
 
 """st.file_uploader()
 st.tabs()
