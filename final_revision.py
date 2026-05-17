@@ -18,16 +18,13 @@ if st.button("This is st.button"):
   st.success("This is st.success")
   
 with st.form(key="user_profile_form"):
-    st.write("Please fill out the details below:")
+    st.write("This box is created with st.form")
     
-    # 2. Add st.text_input for text data
     name = st.text_input("Full Name", placeholder="e.g. Jane Doe")
     
-    # 3. Add st.number_input for numerical data
-    # min_value and max_value keep the input within a realistic range
     age = st.number_input("Age", min_value=1, max_value=120, value=25)
+    st.write("min_value and max_value keep the input within a realistic range")
     
-    # 4. Add st.selectbox for multiple choice options
     occupation = st.selectbox(
         "Current Occupation",
         options=["Software Engineer", "Data Scientist", "Student", "Other"]
@@ -36,8 +33,6 @@ with st.form(key="user_profile_form"):
     # 5. EVERY form MUST have a submit button
     submit_button = st.form_submit_button(label="Submit Profile")
 
-# 6. Process the data after submission
-# This code only runs when the user clicks 'Submit Profile'
 if submit_button:
     st.success(f"Form submitted successfully!")
     st.write(f"**Name:** {name}")
