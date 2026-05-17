@@ -17,6 +17,8 @@ st.markdown("""
 if st.button("This is st.button"):
   st.success("This is st.success")
 
+st.write("This is st.write")
+
 """st.file_uploader()
 st.tabs()
 st.columns()
@@ -27,8 +29,6 @@ st.write()
 st.selectbox()
 st.text_input()
 st.number_input()
-st.success()
-st.button()
 st.form()
 st.bar_chart()
 st.form_submit_button()
