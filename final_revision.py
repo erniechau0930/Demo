@@ -10,9 +10,15 @@ st.header("This is st.header")
 st.subheader("This is st.subheader")
 st.write("This is st.write")
 st.markdown("This is st.markdown")
-
+st.markdown("# This is a Large Heading (H1)")
+st.markdown("## This is a Subheading (H2)")
+st.markdown("You can make text **bold**, *italicized*, or ~~strikethrough~~.")
+st.markdown("""
+* Item 1
+* Item 2
+* Item 3
+""")
 """st.file_uploader()
-st.markdown()
 st.tabs()
 st.columns()
 st.table()
