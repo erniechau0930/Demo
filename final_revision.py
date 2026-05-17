@@ -18,7 +18,7 @@ if st.button("This is st.button()"):
 with st.form(key="user_profile_form"):
     st.write("This box is created with st.form(key=xxx), need unique key value inside st.form()")
     
-    name = st.text_input("This is st.text_input", value="e.g. Jane Doe")
+    name = st.text_input("Name", value="e.g. Jane Doe")
     st.write("format: st.text_input(label, default value)")
     
     age = st.number_input("Age", min_value=1, max_value=120, value=25, step =1)
