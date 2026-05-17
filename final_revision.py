@@ -37,7 +37,7 @@ if submit_button:
     st.success(f"Form submitted successfully!")
     st.write(f"**Name:** {name}")
     st.write(f"**Age:** {age}")
-    st.wrote(f"**Occupation** {occupation}")
+    st.write(f"**Occupation:** {occupation}")
 
 
 
