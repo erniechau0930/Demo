@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("Isom 3400 Final Revision)
+st.title("Isom 3400 Final Revision")
 st.header()
 st.subheader()
 st.file_uploader()
