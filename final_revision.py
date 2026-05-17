@@ -19,7 +19,8 @@ st.write("""
 * Item 1
 """)
 st.write(""" * Item 1""")
-"""st.file_uploader()
+
+"""""st.file_uploader()
 st.tabs()
 st.columns()
 st.table()
@@ -34,4 +35,4 @@ st.button()
 st.form()
 st.bar_chart()
 st.form_submit_button()
-option_menu(menu_title= “”, options= [], icons=[], default_index=0)"""
+option_menu(menu_title= “”, options= [], icons=[], default_index=0)""""""
