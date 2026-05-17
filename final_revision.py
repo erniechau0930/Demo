@@ -21,10 +21,10 @@ with st.form(key="user_profile_form"):
     st.write("This box is created with st.form")
     
     name = st.text_input("This is st.text_input", value="e.g. Jane Doe")
-    st.write("format: st.text_input text shown, default value shown in the input box eg Jane Doe")
+    st.write("format: st.text_input label, default value")
     
     age = st.number_input("Age", min_value=1, max_value=120, value=25)
-    st.write("format: st.number_input text, min_value, max_value, default value")
+    st.write("format: st.number_input label, min_value, max_value, default value")
     
     occupation = st.selectbox(
         "Current Occupation",
