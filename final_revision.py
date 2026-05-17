@@ -18,21 +18,19 @@ if st.button("This is st.button()"):
   st.success("This is st.success()")
   
 with st.form(key="user_profile_form"):
-    st.write("This box is created with st.form(), need unique key value inside st.form()")
+    st.write("This box is created with st.form(key=xxx), need unique key value inside st.form()")
     
     name = st.text_input("This is st.text_input", value="e.g. Jane Doe")
     st.write("format: st.text_input(label, default value)")
     
-    age = st.number_input("Age", min_value=1, max_value=120, value=25)
-    st.write("format: st.number_input(label, min_value, max_value, default value)")
-
-    favorite_number = st.number_input("Favorite number", min_value=1, max_value=10, value=5, step=2)
-    st.write("Can have step as well in st.number_input() to adjust to number change eg step=2")
+    age = st.number_input("Age", min_value=1, max_value=120, value=25, step =1)
+    st.write("format: st.number_input(label, min_value, max_value, default value, step)")
     
     occupation = st.selectbox(
         "Current Occupation",
         options=["Software Engineer", "Data Scientist", "Student", "Other"]
     )
+    st.write("format: st.selectbox(label, options), options is a list")
     
     # 5. EVERY form MUST have a submit button
     submit_button = st.form_submit_button(label="Submit Profile")
