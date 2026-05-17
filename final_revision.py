@@ -26,7 +26,7 @@ with st.form(key="user_profile_form"):
     age = st.number_input("Age", min_value=1, max_value=120, value=25)
     st.write("format: st.number_input label, min_value, max_value, default value")
 
-    favorite number = st.number_input("Age", min_value=1, max_value=10, value=5)
+    favorite number = st.number_input("Age", min_value=1, max_value=10, value=5, step =2)
     st.write("Can have step as well in st.number_input to adjust to number change eg step=2")
     
     occupation = st.selectbox(
