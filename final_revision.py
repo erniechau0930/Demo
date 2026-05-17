@@ -18,7 +18,7 @@ if st.button("This is st.button"):
   st.success("This is st.success")
   
 with st.form(key="user_profile_form"):
-    st.write("This box is created with st.form")
+    st.write("This box is created with st.form, need unique key value inside st.form()")
     
     name = st.text_input("This is st.text_input", value="e.g. Jane Doe")
     st.write("format: st.text_input label, default value")
