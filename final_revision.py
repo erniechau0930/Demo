@@ -20,7 +20,7 @@ st.write("""
 """)
 st.write(""" * Item 1""")
 
-"""""st.file_uploader()
+""""""st.file_uploader()
 st.tabs()
 st.columns()
 st.table()
