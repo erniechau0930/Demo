@@ -17,9 +17,9 @@ st.markdown("""
 if st.button("This is st.button"):
   st.success("This is st.success")
   
-st.selectbox()
+
 st.text_input("This is text input")
-st.number_input()
+
 
 
 """st.file_uploader()
