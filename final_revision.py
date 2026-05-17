@@ -15,9 +15,9 @@ st.markdown("""
 * Item 2
 * Item 3
 """)
-st.write("""
+st.write("
 * Item 1
-""")
+")
 st.write(" * Item 1")
 
 "st.file_uploader()
