@@ -38,7 +38,8 @@ if submit_button:
     st.write(f"**Name:** {name}")
     st.write(f"**Age:** {age}")
     st.write(f"**Occupation:** {occupation}")
-st.button(1)
+  
+st.button("1")
 
 
 """st.file_uploader()
