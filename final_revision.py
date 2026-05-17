@@ -17,8 +17,32 @@ st.markdown("""
 if st.button("This is st.button"):
   st.success("This is st.success")
   
+with st.form(key="user_profile_form"):
+    st.write("Please fill out the details below:")
+    
+    # 2. Add st.text_input for text data
+    name = st.text_input("Full Name", placeholder="e.g. Jane Doe")
+    
+    # 3. Add st.number_input for numerical data
+    # min_value and max_value keep the input within a realistic range
+    age = st.number_input("Age", min_value=1, max_value=120, value=25)
+    
+    # 4. Add st.selectbox for multiple choice options
+    occupation = st.selectbox(
+        "Current Occupation",
+        options=["Software Engineer", "Data Scientist", "Student", "Other"]
+    )
+    
+    # 5. EVERY form MUST have a submit button
+    submit_button = st.form_submit_button(label="Submit Profile")
 
-st.text_input("This is text input")
+# 6. Process the data after submission
+# This code only runs when the user clicks 'Submit Profile'
+if submit_button:
+    st.success(f"Form submitted successfully!")
+    st.write(f"**Name:** {name}")
+    st.write(f"**Age:** {age}")
+    st.write(f"**Occupation:** {occupation}")
 
 
 
