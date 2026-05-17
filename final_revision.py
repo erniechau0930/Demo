@@ -9,7 +9,7 @@ st.title("This is st.title")
 st.header("This is st.header")
 st.subheader("This is st.subheader")
 st.write("This is st.write")
-st.markdown("This is st.markdown You can make text **bold** with "**text**", *italicized* "*text*", or ~~strikethrough~~ "~~text~~".")
+st.markdown("This is st.markdown You can make text **bold** with ""**text**"", *italicized* """*text*""", or ~~strikethrough~~ """"~~text~~"""".")
 st.markdown("""
 * Item 1
 * Item 2
