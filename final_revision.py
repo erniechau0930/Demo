@@ -5,29 +5,29 @@ import numpy as np
 st.title("Isom 3400 Final Revision")
 st.header("Exam Date: 21st May, 12:30pm")
 st.subheader("Location: LTA")
-st.title("This is st.title")
-st.header("This is st.header")
-st.subheader("This is st.subheader")
-st.write("This is st.write")
-st.markdown("This is st.markdown You can make text **bold** with ""** text **"", *italicized* with ""* text *"", or ~~strikethrough~~ with ""~~ text ~~"".")
+st.title("This is st.title()")
+st.header("This is st.header()")
+st.subheader("This is st.subheader()")
+st.write("This is st.write()")
+st.markdown("This is st.markdown() You can make text **bold** with ""** text **"", *italicized* with ""* text *"", or ~~strikethrough~~ with ""~~ text ~~"".")
 st.markdown("""
 * Item 1: Bullet point is made with *
-* Item 2: This can be done with st.markdown, or st.write
+* Item 2: This can be done with st.markdown(), or st.write()
 """)
-if st.button("This is st.button"):
-  st.success("This is st.success")
+if st.button("This is st.button()"):
+  st.success("This is st.success()")
   
 with st.form(key="user_profile_form"):
-    st.write("This box is created with st.form, need unique key value inside st.form()")
+    st.write("This box is created with st.form(), need unique key value inside st.form()")
     
     name = st.text_input("This is st.text_input", value="e.g. Jane Doe")
-    st.write("format: st.text_input label, default value")
+    st.write("format: st.text_input(label, default value)")
     
     age = st.number_input("Age", min_value=1, max_value=120, value=25)
-    st.write("format: st.number_input label, min_value, max_value, default value")
+    st.write("format: st.number_input(label, min_value, max_value, default value)")
 
     favorite_number = st.number_input("Favorite number", min_value=1, max_value=10, value=5, step=2)
-    st.write("Can have step as well in st.number_input to adjust to number change eg step=2")
+    st.write("Can have step as well in st.number_input() to adjust to number change eg step=2")
     
     occupation = st.selectbox(
         "Current Occupation",
