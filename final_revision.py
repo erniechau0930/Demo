@@ -17,17 +17,14 @@ st.header("st.header() - Section header")
 st.subheader("st.subheader() - Subsection header")
 
 st.write("st.write() - Generic text/anything (most flexible)")
-st.markdown("st.markdown() - You can make text **bold**, *italicized*, or ~~strikethrough~~")
+st.markdown("st.markdown() - You can make text **bold** with ** text **, *italicized* with * text *, or ~~strikethrough~~ with ~~ text ~~")
 st.markdown("""
-* Bullet points
+* Bullet points with *
 * With st.markdown() or st.write()
 """)
 
 if st.button("st.button() - Click me!"):
     st.success("st.success() - Success message!")
-    st.info("st.info() - Info message")
-    st.warning("st.warning() - Warning message")
-    st.error("st.error() - Error message")
 
 st.divider()
 
