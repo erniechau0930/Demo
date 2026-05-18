@@ -148,7 +148,7 @@ st.divider()
 # ============================================
 st.header("st.form() and st.form_submit_button()")
 
-with st.form("Profile Form", key="profile_form"):
+with st.form(key="profile_form"):
     st.write("Content inside st.form() - Widgets here don't trigger reruns until submit")
     
     form_name = st.text_input("Full Name")
