@@ -108,13 +108,15 @@ st.table(df.head())
 st.write("st.table(dataframe) - Static table (no sorting, no interaction)")
 
 st.subheader("st.data_editor()")
-edited_df = st.data_editor(df)
+edited_df = st.data_editor(df, num_rows="dynamic", key="editor")
 st.write("st.data_editor(dataframe, num_rows='dynamic') - Editable table, users can modify cells and add/remove rows")
 
 # df[] - accessing columns
 st.subheader("df[] - Accessing columns")
 st.write(df['Price'])
 st.write("df['column_name'] - Accesses specific column from DataFrame")
+
+df["Quantity"]
 
 # df[(condition)] - filtering rows
 st.subheader("df[(condition)] - Filtering rows")
