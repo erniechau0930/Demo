@@ -181,7 +181,7 @@ chart_data = pd.DataFrame({
 st.dataframe(chart_data)
 st.write("Data for chart - needs numeric column for values")
 
-st.bar_chart(chart_data.set_index('Category'))
+st.bar_chart(chart_data)
 st.write("st.bar_chart(dataframe.set_index('x_column')) - Creates bar chart, x-axis from index, y-axis from numeric values")
 
 # Alternative with direct data
