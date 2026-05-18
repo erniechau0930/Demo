@@ -34,7 +34,7 @@ st.write("st.divider() - Adds horizontal line separator")
 # FILE UPLOADER
 # ============================================
 st.header("st.file_uploader()")
-uploaded_file = st.file_uploader("Upload a CSV file", type=['csv'])
+uploaded_file = st.file_uploader("Upload a CSV file", type=['csv', 'haha'])
 st.write("st.file_uploader('label', type=['csv', 'txt']) - File upload widget, returns uploaded file object")
 
 if uploaded_file is not None:
