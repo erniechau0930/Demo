@@ -87,6 +87,35 @@ with col3:
 st.divider()
 
 # ============================================
+# SIDEBAR
+# ============================================
+st.header("st.sidebar - Sidebar Navigation")
+st.write("st.sidebar - Anything with st.sidebar.xxx() appears in the sidebar panel")
+
+with st.sidebar:
+    st.write("**Sidebar Content**")
+    st.write("Use 'with st.sidebar:' to add widgets to sidebar")
+    st.title("Sidebar Menu")
+    st.write("st.sidebar.title() - Title in sidebar")
+    
+    sidebar_name = st.text_input("Your Name", key="sidebar_name")
+    st.write("st.sidebar.text_input() - Text input in sidebar")
+    
+    sidebar_age = st.number_input("Your Age", min_value=0, max_value=120, value=25, key="sidebar_age")
+    st.write("st.sidebar.number_input() - Number input in sidebar")
+    
+    sidebar_color = st.selectbox("Favorite Color", ["Red", "Blue", "Green", "Yellow"], key="sidebar_color")
+    st.write("st.sidebar.selectbox() - Dropdown in sidebar")
+    
+    if st.sidebar.button("Sidebar Button"):
+        st.sidebar.success("Button clicked in sidebar!")
+    st.write("st.sidebar.button() - Button in sidebar")
+
+st.write("st.sidebar - Great for filters, navigation, and controls that persist across pages")
+
+st.divider()
+
+# ============================================
 # DATA DISPLAY FUNCTIONS
 # ============================================
 st.header("Data Display Functions")
@@ -138,10 +167,14 @@ st.write("st.text_input('label', placeholder='text', max_chars=None) - Single li
 age = st.number_input("Enter your age", min_value=0, max_value=120, value=25, step=1)
 st.write("st.number_input('label', min_value, max_value, value, step) - Numeric input with up/down buttons")
 
+# st.slider - ADDED
+slider_value = st.slider("Select a value", min_value=0, max_value=100, value=50, step=5)
+st.write("st.slider('label', min_value, max_value, value, step) - Slider widget for selecting numeric values")
+
 color = st.selectbox("Choose your favorite color", ["Red", "Blue", "Green", "Yellow"])
 st.write("st.selectbox('label', options_list, index=0) - Dropdown selection menu")
 
-st.write(f"**Your inputs:** Name: {name}, Age: {age}, Color: {color}")
+st.write(f"**Your inputs:** Name: {name}, Age: {age}, Slider: {slider_value}, Color: {color}")
 
 st.divider()
 
@@ -249,11 +282,13 @@ cheat_data = {
         "st.file_uploader()",
         "st.tabs()",
         "st.columns()",
+        "st.sidebar",
         "st.dataframe()",
         "st.table()",
         "st.data_editor()",
         "st.text_input()",
         "st.number_input()",
+        "st.slider()",
         "st.selectbox()",
         "st.form()",
         "st.form_submit_button()",
@@ -275,11 +310,13 @@ cheat_data = {
         "st.file_uploader('label', type=['csv'])",
         "tab1, tab2 = st.tabs(['Name1','Name2'])",
         "col1, col2 = st.columns(2)",
+        "with st.sidebar: (add widgets inside)",
         "st.dataframe(df, use_container_width=True)",
         "st.table(df)",
         "st.data_editor(df, num_rows='dynamic')",
         "st.text_input('label', placeholder='text')",
         "st.number_input('label', min, max, value, step)",
+        "st.slider('label', min_value, max_value, value, step)",
         "st.selectbox('label', [options])",
         "with st.form(key='name'):",
         "st.form_submit_button('label')",
@@ -301,11 +338,13 @@ cheat_data = {
         "Upload files",
         "Tabbed interface",
         "Side-by-side columns",
+        "Sidebar panel (persistent)",
         "Interactive table (sort/resize)",
         "Static table",
         "Editable table",
         "Text entry field",
         "Number entry with arrows",
+        "Slider for numeric selection",
         "Dropdown menu",
         "Groups inputs together",
         "Submit button for forms",
