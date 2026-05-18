@@ -68,7 +68,7 @@ st.divider()
 # LAYOUT: COLUMNS
 # ============================================
 st.header("st.columns()")
-col1, col2, col3 = st.columns(4)
+col1, col2, col3, col4= st.columns(4)
 st.write("st.columns(number) - Creates side-by-side columns, returns column objects")
 
 with col1:
