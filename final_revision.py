@@ -104,7 +104,7 @@ st.dataframe(df, use_container_width=True)
 st.write("st.dataframe(dataframe, use_container_width=True) - Interactive table (sortable, resizable columns)")
 
 st.subheader("st.table()")
-st.table(df.head(6))
+st.table(df.head())
 st.write("st.table(dataframe) - Static table (no sorting, no interaction)")
 
 st.subheader("st.data_editor()")
