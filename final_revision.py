@@ -40,7 +40,7 @@ st.write("st.file_uploader('label', type=['csv', 'txt']) - File upload widget, r
 if uploaded_file is not None:
     df_uploaded = pd.read_csv(uploaded_file)
     st.write(f"File uploaded: {uploaded_file.name}")
-    st.dataframe(df_uploaded.row())
+    st.dataframe(df_uploaded.column())
     st.write("pd.read_csv(file) - Reads CSV file into DataFrame")
 
 st.divider()
