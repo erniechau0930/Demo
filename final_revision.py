@@ -18,7 +18,7 @@ st.write("st.write('text') - Generic text/data output (most flexible)")
 st.write("st.write() - Can display strings, numbers, dataframes, charts, etc.")
 
 st.markdown("st.markdown('**bold** or *italic*') - Formatted text with markdown")
-st.write("st.markdown('text') - Supports **bold**, *italic*, ~~strikethrough~~, bullet points, etc.")
+st.write("st.markdown('text') - Supports **bold** with ** text **, *italic* with * text *, ~~strikethrough~~ with ~~ text ~~, bullet points with *text, etc.")
 
 if st.button("Click me"):
     st.success("Button clicked!")
