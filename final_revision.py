@@ -100,7 +100,7 @@ df = pd.DataFrame({
 st.write("pd.DataFrame({'col1': [values], 'col2': [values]}) - Creates DataFrame from dictionary")
 
 st.subheader("st.dataframe()")
-st.dataframe(df, use_container_width=True)
+st.dataframe(df)
 st.write("st.dataframe(dataframe, use_container_width=True) - Interactive table (sortable, resizable columns)")
 
 st.subheader("st.table()")
