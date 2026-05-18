@@ -185,7 +185,7 @@ st.bar_chart(chart_data.set_index('Category'))
 st.write("st.bar_chart(dataframe.set_index('x_column')) - Creates bar chart, x-axis from index, y-axis from numeric values")
 
 # Alternative with direct data
-st.bar_chart(df.set_index('Product')['Price'])
+st.bar_chart(chart_data.set_index('Category')['Values'])
 st.write("st.bar_chart(df.set_index('label_column')['value_column']) - Bar chart from DataFrame column")
 
 st.divider()
