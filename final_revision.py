@@ -48,7 +48,7 @@ if page == "🏠 Home":
     st.write("st.write() - Generic text/data output (most flexible)")
     
     st.markdown("**You can make text bold** and *italicized* using st.markdown()")
-    st.write("st.markdown('text') - Supports **bold**, *italic*, ~~strikethrough~~, bullet points")
+    st.write("st.markdown('text') - Supports **bold** with ** text **, *italic* with * text *, ~~strikethrough~~ with ~~ text ~~, bullet points with * text")
     
     if st.button("Click to start"):
         st.success("Welcome to the revision guide!")
