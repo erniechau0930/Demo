@@ -12,7 +12,7 @@ st.header("st.header() - Section header")
 st.subheader("st.subheader() - Subsection header")
 
 st.write("st.write() - Generic text (most flexible)")
-st.markdown("st.markdown() - You can make text **bold**, *italicized*, or ~~strikethrough~~")
+st.markdown("st.markdown() - You can make text **bold** with ** text **, *italicized* with * text *, or ~~strikethrough~~ with ~~ text ~~")
 st.markdown("""
 * Bullet points with st.markdown()
 * Second bullet point
