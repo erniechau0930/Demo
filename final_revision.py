@@ -3,24 +3,19 @@ import pandas as pd
 import numpy as np
 
 # ============================================
-# PAGE CONFIGURATION (must be first command)
-# ============================================
-st.set_page_config(page_title="Streamlit Revision Guide", layout="wide")
-
-# ============================================
 # TEXT DISPLAY FUNCTIONS
 # ============================================
-st.title("ISOM 3400 Final Revision - Complete Streamlit Guide")
+st.title("ISOM 3400 Final Revision - Streamlit Guide")
 st.title("st.title() - Main page title")
 
 st.header("st.header() - Section header")
 st.subheader("st.subheader() - Subsection header")
 
-st.write("st.write() - Generic text/anything (most flexible)")
-st.markdown("st.markdown() - You can make text **bold** with ** text **, *italicized* with * text *, or ~~strikethrough~~ with ~~ text ~~")
+st.write("st.write() - Generic text (most flexible)")
+st.markdown("st.markdown() - You can make text **bold**, *italicized*, or ~~strikethrough~~")
 st.markdown("""
-* Bullet points with *
-* With st.markdown() or st.write()
+* Bullet points with st.markdown()
+* Second bullet point
 """)
 
 if st.button("st.button() - Click me!"):
@@ -31,61 +26,86 @@ st.divider()
 # ============================================
 # FILE UPLOADER
 # ============================================
-st.header("st.file_uploader() - Upload files")
-uploaded_file = st.file_uploader("Upload a CSV file", type=['csv'], help="Only CSV files")
+st.header("st.file_uploader() - Upload CSV files")
+
+uploaded_file = st.file_uploader("Upload a CSV file", type=['csv'])
+
 if uploaded_file is not None:
     df_uploaded = pd.read_csv(uploaded_file)
-    st.write(f"Uploaded: {uploaded_file.name}")
+    st.write(f"File uploaded: {uploaded_file.name}")
     st.dataframe(df_uploaded.head())
+    
+    # Using df[] to access columns
+    st.write("**First column data:**")
+    first_column = df_uploaded.columns[0]
+    st.write(df_uploaded[first_column])
+    
+    # Using df[(condition)] to filter rows
+    st.write("**Filtered data (first column > 0):**")
+    st.dataframe(df_uploaded[df_uploaded[first_column] > 0])
 
 st.divider()
 
 # ============================================
-# LAYOUT FUNCTIONS: TABS
+# LAYOUT: TABS
 # ============================================
 st.header("st.tabs() - Tabbed interface")
-tab1, tab2, tab3 = st.tabs(["📁 File Upload", "📊 Data Display", "⚙️ Settings"])
+
+tab1, tab2, tab3 = st.tabs(["Data Entry", "Data Display", "Charts"])
 
 with tab1:
-    st.write("Upload your data here")
-    st.file_uploader("Choose file", key="tab_file")
+    st.write("Enter your data here")
+    st.text_input("Name", key="tab_name")
+    st.number_input("Age", key="tab_age")
 
 with tab2:
     st.write("Preview your data")
-    sample_df = pd.DataFrame({'A': [1,2,3], 'B': [4,5,6]})
-    st.dataframe(sample_df)
+    sample_data = pd.DataFrame({
+        'Name': ['Alice', 'Bob', 'Charlie'],
+        'Age': [25, 30, 35],
+        'Score': [85, 92, 78]
+    })
+    st.dataframe(sample_data)
 
 with tab3:
-    st.write("Adjust settings")
-    theme = st.selectbox("Theme", ["Light", "Dark"])
+    st.write("Charts will appear here")
 
 st.divider()
 
 # ============================================
-# LAYOUT FUNCTIONS: COLUMNS
+# LAYOUT: COLUMNS
 # ============================================
 st.header("st.columns() - Side-by-side layout")
 
 col1, col2, col3 = st.columns(3)
-with col1:
-    st.metric("st.metric() - Temperature", "72°F", "-2°F")
-with col2:
-    st.metric("Humidity", "45%", "+5%")
-with col3:
-    st.metric("Wind", "12 mph", "-3 mph")
 
-# Different width columns
-st.write("Columns with different widths: st.columns([2,1,1])")
+with col1:
+    st.write("**Column 1**")
+    st.button("Button 1", key="col1_btn")
+
+with col2:
+    st.write("**Column 2**")
+    st.button("Button 2", key="col2_btn")
+
+with col3:
+    st.write("**Column 3**")
+    st.button("Button 3", key="col3_btn")
+
+# Columns with different widths
+st.write("Columns with different widths [2,1,1]:")
 colA, colB, colC = st.columns([2, 1, 1])
+
 with colA:
     st.write("**Wider column (weight 2)**")
-    st.button("Button A", key="colA")
+    st.selectbox("Option", ["A", "B", "C"], key="wide_select")
+
 with colB:
     st.write("**Column (weight 1)**")
-    st.button("Button B", key="colB")
+    st.text_input("Name", key="colB_input")
+
 with colC:
     st.write("**Column (weight 1)**")
-    st.button("Button C", key="colC")
+    st.number_input("Age", key="colC_num")
 
 st.divider()
 
@@ -94,58 +114,55 @@ st.divider()
 # ============================================
 st.header("Data Display Functions")
 
-# Create sample data
-sample_data = pd.DataFrame({
-    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],
-    'Age': [25, 30, 35, 28],
-    'Salary': [50000, 60000, 70000, 55000],
-    'Department': ['Sales', 'IT', 'Sales', 'IT']
+# Create DataFrame using pd.DataFrame()
+df = pd.DataFrame({
+    'Product': ['Laptop', 'Mouse', 'Keyboard', 'Monitor', 'Headphones'],
+    'Price': [999, 25, 75, 299, 149],
+    'Quantity': [10, 50, 30, 15, 40],
+    'Category': ['Electronics', 'Accessories', 'Accessories', 'Electronics', 'Accessories']
 })
 
-# st.table() - static
-st.subheader("st.table() - Static table (no interaction)")
-st.table(sample_data.head(3))
+st.subheader("Original Data - st.dataframe() (interactive)")
+st.dataframe(df, use_container_width=True)
+st.write("✅ Click column headers to sort | Drag edges to resize")
 
-# st.dataframe() - interactive
-st.subheader("st.dataframe() - Interactive (click headers to sort)")
-st.dataframe(sample_data, use_container_width=True)
+st.subheader("Static Table - st.table() (no interaction)")
+st.table(df.head(3))
 
-# st.data_editor() - editable
-st.subheader("st.data_editor() - Editable table")
-edited_data = st.data_editor(sample_data, num_rows="dynamic", key="data_editor")
+st.subheader("Editable Table - st.data_editor()")
+edited_df = st.data_editor(df, num_rows="dynamic", key="data_editor")
+
 if st.button("Show edited data"):
     st.write("You edited:")
-    st.dataframe(edited_data)
+    st.dataframe(edited_df)
 
-st.divider()
+# Using df[] to access columns
+st.subheader("Accessing columns with df[]")
+st.write("**Prices column:**")
+st.write(df['Price'])
 
-# ============================================
-# CHARTS
-# ============================================
-st.header("Charts")
+st.write("**Products and Prices:**")
+for i in range(len(df)):
+    st.write(f"{df['Product'][i]}: ${df['Price'][i]}")
 
-chart_data = pd.DataFrame({
-    'Category': ['A', 'B', 'C', 'D', 'E'],
-    'Sales': [100, 250, 180, 300, 220],
-    'Profit': [30, 80, 50, 120, 90]
-})
+# Using df[(condition)] to filter rows
+st.subheader("Filtering rows with df[(condition)]")
 
-st.subheader("st.bar_chart() - Simple bar chart")
-st.bar_chart(chart_data.set_index('Category'))
+st.write("**Products with price > $100:**")
+expensive = df[df['Price'] > 100]
+st.dataframe(expensive)
 
-st.subheader("st.line_chart() - Line chart")
-st.line_chart(chart_data.set_index('Category'))
+st.write("**Accessories category only:**")
+accessories = df[df['Category'] == 'Accessories']
+st.dataframe(accessories)
 
-st.subheader("st.area_chart() - Area chart")
-st.area_chart(chart_data.set_index('Category'))
+st.write("**Products with quantity >= 30:**")
+high_stock = df[df['Quantity'] >= 30]
+st.dataframe(high_stock)
 
-# st.pyplot() - for matplotlib plots
-st.subheader("st.pyplot() - Matplotlib plots")
-import matplotlib.pyplot as plt
-fig, ax = plt.subplots()
-ax.bar(chart_data['Category'], chart_data['Sales'])
-ax.set_title("Sales by Category")
-st.pyplot(fig)
+st.write("**Multiple conditions (Price > 100 AND Category = Electronics):**")
+electronics_expensive = df[(df['Price'] > 100) & (df['Category'] == 'Electronics')]
+st.dataframe(electronics_expensive)
 
 st.divider()
 
@@ -154,61 +171,65 @@ st.divider()
 # ============================================
 st.header("Input Widgets")
 
-# Individual widgets
-st.subheader("Individual Widgets (run immediately)")
-
 # st.text_input
-name = st.text_input("st.text_input() - Name", placeholder="Enter your name", max_chars=50)
+name = st.text_input("st.text_input() - Enter your name", placeholder="Type here...")
 
 # st.number_input
-age = st.number_input("st.number_input() - Age", min_value=0, max_value=120, value=25, step=1)
+age = st.number_input("st.number_input() - Enter your age", min_value=0, max_value=120, value=25, step=1)
 
 # st.selectbox
-color = st.selectbox("st.selectbox() - Favorite color", ["Red", "Blue", "Green", "Yellow"], index=0)
+color = st.selectbox("st.selectbox() - Choose your favorite color", ["Red", "Blue", "Green", "Yellow"])
 
-# st.slider
-rating = st.slider("st.slider() - Rating", min_value=0, max_value=100, value=75, step=5)
-
-# st.date_input
-import datetime
-date = st.date_input("st.date_input() - Date", datetime.date.today())
-
-# st.checkbox
-agree = st.checkbox("st.checkbox() - I agree to terms")
-
-# st.radio
-size = st.radio("st.radio() - Size", ["Small", "Medium", "Large"])
-
-# st.multiselect
-hobbies = st.multiselect("st.multiselect() - Hobbies", ["Reading", "Sports", "Music", "Gaming"])
-
-st.write(f"**Your inputs:** Name: {name}, Age: {age}, Color: {color}, Rating: {rating}")
+st.write(f"**Your inputs:** Name: {name}, Age: {age}, Color: {color}")
 
 st.divider()
 
 # ============================================
-# FORM (batched inputs with submit button)
+# FORM (with st.form and st.form_submit_button)
 # ============================================
-st.header("st.form() - Batched inputs with Submit button")
-st.write("st.form_submit_button() vs st.button(): Form submit only triggers ONCE when clicked")
+st.header("st.form() - Form with Submit Button")
 
-with st.form(key="profile_form"):
+with st.form(key="user_form"):
     st.write("**Fill out your profile:**")
     
     form_name = st.text_input("Full Name")
     form_age = st.number_input("Age", min_value=0, max_value=120)
     form_occupation = st.selectbox("Occupation", ["Student", "Engineer", "Manager", "Other"])
-    form_experience = st.slider("Years of Experience", 0, 40, 5)
+    form_city = st.text_input("City")
     
-    submit_button = st.form_submit_button(label="Submit Profile")
-    st.write("st.form_submit_button() - Must be inside st.form()")
+    submitted = st.form_submit_button("Submit Profile")
+    st.write("st.form_submit_button() - Only triggers when clicked (not on every change)")
 
-if submit_button:
-    st.success("Form submitted successfully!")
+if submitted:
+    st.success(f"Form submitted successfully!")
     st.write(f"**Name:** {form_name}")
     st.write(f"**Age:** {form_age}")
     st.write(f"**Occupation:** {form_occupation}")
-    st.write(f"**Experience:** {form_experience} years")
+    st.write(f"**City:** {form_city}")
+
+st.divider()
+
+# ============================================
+# BAR CHART
+# ============================================
+st.header("st.bar_chart() - Bar Chart Visualization")
+
+# Create data for chart using pd.DataFrame()
+chart_data = pd.DataFrame({
+    'Category': ['A', 'B', 'C', 'D', 'E'],
+    'Values': [23, 45, 12, 67, 34]
+})
+
+st.write("**Sample Data for Chart:**")
+st.dataframe(chart_data)
+
+st.subheader("Bar Chart")
+st.bar_chart(chart_data.set_index('Category'))
+
+# Another example using actual data
+st.subheader("Sales by Product (from our data)")
+sales_by_product = df.set_index('Product')['Price']
+st.bar_chart(sales_by_product)
 
 st.divider()
 
@@ -222,35 +243,38 @@ try:
     from streamlit_option_menu import option_menu
     
     selected = option_menu(
-        menu_title="Navigation Menu",
-        options=["Home", "Data", "Charts", "Settings"],
-        icons=["house", "database", "graph-up", "gear"],
-        menu_icon="cast",
+        menu_title="Main Menu",
+        options=["Home", "Data", "Charts", "Profile"],
+        icons=["house", "table", "bar-chart", "person"],
         default_index=0,
-        orientation="horizontal",
     )
     
     st.write(f"option_menu() format: option_menu(menu_title='Title', options=list, icons=list, default_index=int)")
-    st.write(f"**Selected:** {selected}")
+    st.write(f"**You selected:** {selected}")
     
     if selected == "Home":
-        st.write("Welcome to Home page")
+        st.write("Welcome to the Home page!")
     elif selected == "Data":
-        st.dataframe(sample_data)
+        st.dataframe(df)
     elif selected == "Charts":
-        st.bar_chart(chart_data.set_index('Category'))
-    elif selected == "Settings":
-        st.write("Settings page content")
+        st.bar_chart(df.set_index('Product')['Price'])
+    elif selected == "Profile":
+        st.text_input("Name")
+        st.number_input("Age")
         
 except ImportError:
-    st.warning("streamlit-option_menu not installed. Run: pip install streamlit-option_menu")
+    st.warning("streamlit-option-menu not installed. Run: pip install streamlit-option-menu")
     st.code("""
+    # To install:
+    pip install streamlit-option-menu
+    
+    # Then use:
     from streamlit_option_menu import option_menu
     
     selected = option_menu(
         menu_title="Main Menu",
-        options=["Home", "Profile", "Settings"],
-        icons=["house", "person", "gear"],
+        options=["Home", "Data", "Charts"],
+        icons=["house", "table", "bar-chart"],
         default_index=0,
     )
     """)
@@ -258,55 +282,80 @@ except ImportError:
 st.divider()
 
 # ============================================
-# SIDEBAR
+# COMPLETE EXAMPLE: Data Analysis Dashboard
 # ============================================
-st.header("st.sidebar - Sidebar navigation")
-st.write("Anything with st.sidebar.xxx() appears in the sidebar")
+st.header("Complete Example: Data Analysis Dashboard")
 
-with st.sidebar:
-    st.title("Sidebar Menu")
-    st.write("Use st.sidebar for navigation/filters")
+# Create data using pd.DataFrame()
+sales_data = pd.DataFrame({
+    'Date': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    'Sales': [1200, 1500, 1800, 1700, 2100, 2500],
+    'Region': ['North', 'South', 'North', 'East', 'West', 'North']
+})
+
+st.subheader("Sales Data")
+st.dataframe(sales_data)
+
+# Using df[] to access column
+st.subheader("Sales Column Only")
+st.write(sales_data['Sales'])
+
+# Using df[(condition)] to filter rows
+st.subheader("Filter: North Region Sales Only")
+north_sales = sales_data[sales_data['Region'] == 'North']
+st.dataframe(north_sales)
+
+# Bar chart of sales
+st.subheader("Sales Bar Chart")
+st.bar_chart(sales_data.set_index('Date')['Sales'])
+
+# Form to add new sales data
+with st.form(key="add_sales_form"):
+    st.write("**Add New Sales Record:**")
+    new_date = st.text_input("Month")
+    new_sales = st.number_input("Sales Amount", min_value=0)
+    new_region = st.selectbox("Region", ["North", "South", "East", "West"])
     
-    sidebar_option = st.selectbox("Navigate", ["Home", "Data", "Charts", "Profile"])
-    st.slider("Filter value", 0, 100, 50)
+    add_submitted = st.form_submit_button("Add Record")
     
-    if st.button("Sidebar Button"):
-        st.info("Button clicked in sidebar!")
+    if add_submitted:
+        st.success(f"Added: {new_date} - ${new_sales} ({new_region})")
 
 st.divider()
 
 # ============================================
 # SUMMARY CHEAT SHEET
 # ============================================
-st.header("📚 Quick Reference Cheat Sheet")
+st.header("📚 Quick Reference - All Functions Used")
 
-cheat_sheet = {
-    "Category": [
-        "Text Display", "Text Display", "Text Display",
-        "Layout", "Layout",
-        "Data Display", "Data Display", "Data Display", "Data Display",
-        "Charts", "Charts",
-        "Input", "Input", "Input", "Input", "Input", "Input", "Input",
-        "Form", "File", "Sidebar", "Menu"
-    ],
-    "Function": [
-        "st.title()", "st.header()", "st.write()",
-        "st.tabs()", "st.columns()",
-        "st.table()", "st.dataframe()", "st.data_editor()", "st.metric()",
-        "st.bar_chart()", "st.line_chart()",
-        "st.text_input()", "st.number_input()", "st.selectbox()", "st.slider()", "st.checkbox()", "st.radio()", "st.multiselect()",
-        "st.form() + st.form_submit_button()", "st.file_uploader()", "st.sidebar", "option_menu()"
-    ],
-    "What it does": [
-        "Main page title", "Section header", "Generic text/anything",
-        "Tabbed interface", "Side-by-side columns",
-        "Static table", "Interactive table (sort)", "Editable table", "Display KPI cards",
-        "Bar chart", "Line chart",
-        "Text entry", "Number entry", "Dropdown menu", "Range slider", "True/False", "Radio buttons", "Multiple selection",
-        "Batch inputs with submit", "Upload files", "Sidebar content", "Navigation menu"
-    ]
-}
+st.write("""
+**Streamlit Functions:**
+- `st.title()` - Main title
+- `st.header()` - Section header  
+- `st.subheader()` - Subsection header
+- `st.write()` - Generic text/data output
+- `st.markdown()` - Formatted text with markdown
+- `st.button()` - Clickable button
+- `st.success()` - Success message
+- `st.file_uploader()` - Upload CSV files
+- `st.tabs()` - Tabbed interface
+- `st.columns()` - Side-by-side layout
+- `st.dataframe()` - Interactive table
+- `st.table()` - Static table
+- `st.data_editor()` - Editable table
+- `st.text_input()` - Text entry field
+- `st.number_input()` - Number entry field
+- `st.selectbox()` - Dropdown menu
+- `st.form()` - Group inputs together
+- `st.form_submit_button()` - Submit button for forms
+- `st.bar_chart()` - Bar chart visualization
+- `option_menu()` - Navigation menu (extra package)
 
-st.dataframe(pd.DataFrame(cheat_sheet), use_container_width=True, hide_index=True)
+**Pandas Functions:**
+- `pd.DataFrame()` - Create DataFrame from data
+- `pd.read_csv()` - Read CSV file into DataFrame
+- `df[]` - Access specific column
+- `df[(condition)]` - Filter rows by condition
+""")
 
-st.success("✅ Complete Streamlit Revision Guide - All functions demonstrated!")
+st.success("✅ Complete! All functions from your list are demonstrated above.")
