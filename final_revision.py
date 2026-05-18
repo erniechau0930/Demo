@@ -108,7 +108,7 @@ st.table(df.head())
 st.write("st.table(dataframe) - Static table (no sorting, no interaction)")
 
 st.subheader("st.data_editor()")
-edited_df = st.data_editor(df, num_rows="dynamic", key="editor")
+edited_df = st.data_editor(df)
 st.write("st.data_editor(dataframe, num_rows='dynamic') - Editable table, users can modify cells and add/remove rows")
 
 # df[] - accessing columns
