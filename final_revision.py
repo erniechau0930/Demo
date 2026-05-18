@@ -84,15 +84,6 @@ with col3:
     st.write("Column 3")
     st.button("Btn 3", key="c3")
 
-st.write("Different widths: st.columns([2,1,1]) - List controls relative widths")
-colA, colB, colC = st.columns([2, 1, 1])
-with colA:
-    st.write("Width weight 2")
-with colB:
-    st.write("Width weight 1")
-with colC:
-    st.write("Width weight 1")
-
 st.divider()
 
 # ============================================
