@@ -86,7 +86,7 @@ elif page == "📊 Data Display":
     # df[(condition)] - filtering rows
     st.subheader("df[(condition)] - Filtering Rows")
     st.write("Products with Price > 100:")
-    expensive = df[df['Price'] > 100]
+    expensive = df[(df['Price'] > 100)]
     st.dataframe(expensive)
     st.write("df[df['column'] > value] - Filters rows where condition is True")
 
