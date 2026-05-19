@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 
 # ============================================
 # SIDEBAR - PAGE NAVIGATION
@@ -9,24 +8,15 @@ with st.sidebar:
     st.title("📚 Navigation")
     st.write("Use the menu below to navigate:")
     
-    # Navigation options
-    page = st.radio(
+    # Navigation options using selectbox instead of radio (radio not in test coverage)
+    page = st.selectbox(
         "Go to:",
         ["🏠 Home", "📊 Data Display", "📈 Charts", "📝 Forms & Inputs", "📁 File Upload", "📚 Reference"]
     )
-    st.write("st.radio('label', options) - Radio buttons for navigation")
+    st.write("st.selectbox('label', options) - Dropdown for navigation")
     st.divider()
     
-    # Quick filters (only show on relevant pages)
-    st.write("**Quick Filters**")
-    show_demo = st.checkbox("Show all examples", value=True)
-    st.write("st.checkbox('label') - Checkbox for boolean selection")
-    
-    st.divider()
-    st.caption("ISOM 3400 Final Revision")
-    st.caption("Streamlit Guide v1.0")
-
-st.write("st.sidebar - Sidebar panel for navigation and persistent controls")
+    st.write("st.sidebar - Sidebar panel for navigation and persistent controls")
 
 st.divider()
 
@@ -56,8 +46,6 @@ if page == "🏠 Home":
     
     st.success("Use the sidebar on the left to navigate between topics")
     st.write("st.success('message') - Green success message box")
-
-    st.markdown("**Reminder**: np.random.randint(min,max, size = x)")
 
 # ============================================
 # DATA DISPLAY PAGE
@@ -139,6 +127,7 @@ elif page == "📝 Forms & Inputs":
     st.header("Input Widgets")
     
     col1, col2 = st.columns(2)
+    st.write("st.columns(number) - Creates side-by-side columns")
     
     with col1:
         st.subheader("Individual Widgets")
@@ -189,7 +178,7 @@ elif page == "📁 File Upload":
     st.header("st.file_uploader() - Upload CSV Files")
     
     uploaded_file = st.file_uploader("Choose a CSV file", type=['csv'])
-    st.write("st.file_uploader('label', type=['csv', 'txt']) - File upload widget")
+    st.write("st.file_uploader('label', type=['csv']) - File upload widget")
     
     if uploaded_file is not None:
         df_uploaded = pd.read_csv(uploaded_file)
@@ -204,11 +193,10 @@ elif page == "📁 File Upload":
         st.write(f"**Columns:** {df_uploaded.shape[1]}")
         st.write(f"**Column Names:** {list(df_uploaded.columns)}")
     else:
-        st.info("👈 Upload a CSV file to see preview")
-        st.write("st.info('message') - Blue info box")
+        st.write("👈 Upload a CSV file to see preview")
 
 # ============================================
-# REFERENCE PAGE (was COMPLETE SUMMARY CHEAT SHEET)
+# REFERENCE PAGE (COMPLETE SUMMARY CHEAT SHEET)
 # ============================================
 
 elif page == "📚 Reference":
@@ -223,7 +211,6 @@ elif page == "📚 Reference":
             "st.markdown()",
             "st.button()",
             "st.success()",
-            "st.info()",
             "st.file_uploader()",
             "st.tabs()",
             "st.columns()",
@@ -235,27 +222,25 @@ elif page == "📚 Reference":
             "st.number_input()",
             "st.slider()",
             "st.selectbox()",
-            "st.radio()",
-            "st.checkbox()",
             "st.form()",
             "st.form_submit_button()",
             "st.bar_chart()",
             "pd.DataFrame()",
             "pd.read_csv()",
             "df[]",
-            "df[(condition)]"
+            "df[(condition)]",
+            "option_menu()"
         ],
         "Format / Parameters": [
             "st.title('text')",
             "st.header('text')",
             "st.subheader('text')",
             "st.write(anything)",
-            "st.markdown('**bold**')",
+            "st.markdown('**bold** *italic*')",
             "st.button('label')",
             "st.success('message')",
-            "st.info('message')",
             "st.file_uploader('label', type=['csv'])",
-            "tab1, tab2 = st.tabs(['A','B'])",
+            "tab1, tab2 = st.tabs(['Name1','Name2'])",
             "col1, col2 = st.columns(2)",
             "with st.sidebar:",
             "st.dataframe(df, use_container_width=True)",
@@ -265,26 +250,42 @@ elif page == "📚 Reference":
             "st.number_input('label', min, max, value, step)",
             "st.slider('label', min, max, value, step)",
             "st.selectbox('label', [options])",
-            "st.radio('label', [options])",
-            "st.checkbox('label')",
             "with st.form(key='name'):",
             "st.form_submit_button('label')",
             "st.bar_chart(df.set_index('x')['y'])",
             "pd.DataFrame({'col': [values]})",
             "pd.read_csv('filename.csv')",
             "df['column_name']",
-            "df[df['column'] > value]"
+            "df[df['column'] > value]",
+            "option_menu(menu_title='', options=[], icons=[], default_index=0)"
         ],
         "What it does": [
-            "Main title", "Section header", "Subsection header",
-            "Display anything", "Formatted text", "Clickable button",
-            "Green success box", "Blue info box", "Upload files",
-            "Tabbed interface", "Side-by-side columns", "Sidebar panel",
-            "Interactive table", "Static table", "Editable table",
-            "Text entry", "Number entry", "Slider selection",
-            "Dropdown menu", "Radio buttons", "Checkbox",
-            "Groups inputs", "Submit button", "Bar chart",
-            "Create DataFrame", "Read CSV", "Access column", "Filter rows"
+            "Main page title",
+            "Section header",
+            "Subsection header",
+            "Display anything",
+            "Formatted text with **bold** and *italic*",
+            "Clickable button",
+            "Green success box",
+            "Upload CSV files",
+            "Tabbed interface",
+            "Side-by-side columns",
+            "Sidebar panel",
+            "Interactive table (sort/resize)",
+            "Static table",
+            "Editable table",
+            "Text entry field",
+            "Number entry with arrows",
+            "Slider for numeric selection",
+            "Dropdown menu",
+            "Groups inputs together",
+            "Submit button for forms",
+            "Bar chart visualization",
+            "Create DataFrame from dictionary",
+            "Read CSV file into DataFrame",
+            "Access specific column",
+            "Filter rows by condition",
+            "Navigation menu (requires extra package)"
         ]
     }
     
@@ -294,30 +295,64 @@ elif page == "📚 Reference":
     st.success("✅ Complete reference - bookmark this page!")
 
 # ============================================
-# TABS DEMO (only shown if show_demo is True)
+# TABS DEMO
 # ============================================
 
-if show_demo and page != "📚 Reference":
-    st.divider()
-    st.header("st.tabs() - Tabbed Interface Demo")
-    tab1, tab2, tab3 = st.tabs(["Tab 1", "Tab 2", "Tab 3"])
-    st.write("st.tabs(['tab1_name', 'tab2_name', 'tab3_name']) - Creates tabs")
+st.divider()
+st.header("st.tabs() - Tabbed Interface Demo")
+tab1, tab2, tab3 = st.tabs(["Tab 1", "Tab 2", "Tab 3"])
+st.write("st.tabs(['tab1_name', 'tab2_name', 'tab3_name']) - Creates tabs")
+
+with tab1:
+    st.write("Content for Tab 1")
+with tab2:
+    st.write("Content for Tab 2")
+with tab3:
+    st.write("Content for Tab 3")
+
+st.divider()
+st.header("st.columns() - Column Layout Demo")
+col1, col2, col3 = st.columns(3)
+st.write("st.columns(number) - Creates columns")
+
+with col1:
+    st.write("Column 1")
+with col2:
+    st.write("Column 2")
+with col3:
+    st.write("Column 3")
+
+# ============================================
+# OPTION MENU DEMO (requires extra package)
+# ============================================
+st.divider()
+st.header("option_menu() - Navigation Menu")
+st.write("option_menu(menu_title='', options=[], icons=[], default_index=0) - Creates navigation menu")
+st.write("Note: Requires 'pip install streamlit-option-menu'")
+
+try:
+    from streamlit_option_menu import option_menu
     
-    with tab1:
-        st.write("Content for Tab 1")
-    with tab2:
-        st.write("Content for Tab 2")
-    with tab3:
-        st.write("Content for Tab 3")
+    selected = option_menu(
+        menu_title="Demo Menu",
+        options=["Home", "Data", "Charts"],
+        icons=["house", "table", "bar-chart"],
+        default_index=0,
+        orientation="horizontal"
+    )
     
-    st.divider()
-    st.header("st.columns() - Column Layout Demo")
-    col1, col2, col3 = st.columns(3)
-    st.write("st.columns(number) - Creates columns")
+    st.write(f"option_menu() format: option_menu(menu_title='Title', options=list, icons=list, default_index=int)")
+    st.write(f"You selected: {selected}")
+        
+except ImportError:
+    st.write("streamlit-option-menu not installed. Run: pip install streamlit-option-menu")
+    st.write("""
+    from streamlit_option_menu import option_menu
     
-    with col1:
-        st.write("Column 1")
-    with col2:
-        st.write("Column 2")
-    with col3:
-        st.write("Column 3")
+    selected = option_menu(
+        menu_title="Main Menu",
+        options=["Home", "Data", "Charts"],
+        icons=["house", "table", "bar-chart"],
+        default_index=0,
+    )
+    """)
