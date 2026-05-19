@@ -8,7 +8,7 @@ with st.sidebar:
     st.title("📚 Navigation")
     st.write("Use the menu below to navigate:")
     
-    # Navigation options using selectbox instead of radio (radio not in test coverage)
+    # Navigation options
     page = st.selectbox(
         "Go to:",
         ["🏠 Home", "📊 Data Display", "📈 Charts", "📝 Forms & Inputs", "📁 File Upload", "📚 Reference"]
@@ -102,13 +102,13 @@ elif page == "📈 Charts":
     st.write("Sample Data for Charts:")
     st.dataframe(chart_data)
     
-    st.subheader("st.bar_chart()")
-    st.bar_chart(chart_data.set_index('Category')['Sales'])
-    st.write("st.bar_chart(dataframe.set_index('x_column')['y_column']) - Creates bar chart")
+    st.subheader("st.line_chart()")
+    st.line_chart(data=chart_data.set_index('Category')['Sales'], height=300, use_container_width=True)
+    st.write("st.line_chart(data=__, height=__, use_container_width=True) - Creates line chart")
     
-    st.subheader("Multiple Series Bar Chart")
-    st.bar_chart(chart_data.set_index('Category'))
-    st.write("st.bar_chart(dataframe.set_index('x_column')) - Multiple columns become multiple bars")
+    st.subheader("Multiple Series Line Chart")
+    st.line_chart(data=chart_data.set_index('Category'), height=400, use_container_width=True)
+    st.write("st.line_chart(data=dataframe.set_index('x_column')) - Multiple columns become multiple lines")
     
     # Interactive chart with slider
     st.subheader("Interactive Chart - Adjust with Slider")
@@ -116,7 +116,7 @@ elif page == "📈 Charts":
     st.write("st.slider('label', min, max, value) - Slider for numeric input")
     
     filtered_data = chart_data[chart_data['Sales'] >= min_value]
-    st.bar_chart(filtered_data.set_index('Category')['Sales'])
+    st.line_chart(data=filtered_data.set_index('Category')['Sales'], height=300, use_container_width=True)
     st.write(f"Showing products with Sales >= {min_value}")
 
 # ============================================
@@ -196,7 +196,7 @@ elif page == "📁 File Upload":
         st.write("👈 Upload a CSV file to see preview")
 
 # ============================================
-# REFERENCE PAGE (COMPLETE SUMMARY CHEAT SHEET)
+# REFERENCE PAGE
 # ============================================
 
 elif page == "📚 Reference":
@@ -224,7 +224,8 @@ elif page == "📚 Reference":
             "st.selectbox()",
             "st.form()",
             "st.form_submit_button()",
-            "st.bar_chart()",
+            "st.line_chart()",
+            "st.expander()",
             "pd.DataFrame()",
             "pd.read_csv()",
             "df[]",
@@ -252,7 +253,8 @@ elif page == "📚 Reference":
             "st.selectbox('label', [options])",
             "with st.form(key='name'):",
             "st.form_submit_button('label')",
-            "st.bar_chart(df.set_index('x')['y'])",
+            "st.line_chart(data=df, height=300, use_container_width=True)",
+            "with st.expander('label'):",
             "pd.DataFrame({'col': [values]})",
             "pd.read_csv('filename.csv')",
             "df['column_name']",
@@ -280,7 +282,8 @@ elif page == "📚 Reference":
             "Dropdown menu",
             "Groups inputs together",
             "Submit button for forms",
-            "Bar chart visualization",
+            "Line chart visualization",
+            "Expandable section (hide/show content)",
             "Create DataFrame from dictionary",
             "Read CSV file into DataFrame",
             "Access specific column",
@@ -310,6 +313,26 @@ with tab2:
 with tab3:
     st.write("Content for Tab 3")
 
+# ============================================
+# EXPANDER DEMO
+# ============================================
+
+st.divider()
+st.header("st.expander() - Expandable Section")
+st.write("st.expander('label') - Creates expandable section that hides/shows content")
+
+with st.expander("Click to expand this section"):
+    st.write("This content is hidden until you click the expander!")
+    st.write("You can put any widgets or content inside an expander.")
+    st.success("Great for organizing long pages!")
+
+with st.expander("Another expander example"):
+    st.dataframe(pd.DataFrame({'A': [1,2,3], 'B': [4,5,6]}))
+
+# ============================================
+# COLUMNS DEMO
+# ============================================
+
 st.divider()
 st.header("st.columns() - Column Layout Demo")
 col1, col2, col3 = st.columns(3)
@@ -323,8 +346,9 @@ with col3:
     st.write("Column 3")
 
 # ============================================
-# OPTION MENU DEMO (requires extra package)
+# OPTION MENU DEMO
 # ============================================
+
 st.divider()
 st.header("option_menu() - Navigation Menu")
 st.write("option_menu(menu_title='', options=[], icons=[], default_index=0) - Creates navigation menu")
@@ -347,6 +371,7 @@ try:
 except ImportError:
     st.write("streamlit-option-menu not installed. Run: pip install streamlit-option-menu")
     st.write("""
+    ```python
     from streamlit_option_menu import option_menu
     
     selected = option_menu(
@@ -355,4 +380,3 @@ except ImportError:
         icons=["house", "table", "bar-chart"],
         default_index=0,
     )
-    """)
