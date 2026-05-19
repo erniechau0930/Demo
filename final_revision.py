@@ -74,8 +74,10 @@ elif page == "📊 Data Display":
     st.write("st.table(dataframe) - Static table, no interaction")
     
     st.subheader("st.data_editor() - Editable Table")
+    st.data_editor(df, num_rows="dynamic", key="editor")
     edited_df = st.data_editor(df, num_rows="dynamic", key="editor")
     st.write("st.data_editor(dataframe, num_rows='dynamic') - Users can edit cells")
+    st.write("edited_df = st.data_editor(df, num_rows="dynamic", key="editor") stores edited data in variable we can use later")
     
     # df[] - accessing columns
     st.subheader("df[] - Accessing Columns")
