@@ -4,12 +4,15 @@ import pandas as pd
 # ============================================
 # SIDEBAR - PAGE NAVIGATION
 # ============================================
+st.write("st.sidebar.method() with parenthesis")
 st.sidebar.title("Navigation")     # ✅ Title in sidebar
 st.sidebar.write("Content here")   # ✅ Write in sidebar
 st.sidebar.selectbox("Options", ["A","B"])  # ✅ Selectbox in sidebar
 
 with st.sidebar:
     st.title("📚 Navigation")
+    st.write("st.sidebar without parenthesis")
+    st.write("with st.sidebar:")
     st.write("st.sidebar.title() - Title in sidebar")
     st.write("Use the menu below to navigate:")
     st.write("st.sidebar.write() - Text in sidebar")
