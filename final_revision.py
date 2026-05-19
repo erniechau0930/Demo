@@ -57,7 +57,7 @@ if page == "🏠 Home":
     st.success("Use the sidebar on the left to navigate between topics")
     st.write("st.success('message') - Green success message box")
 
-    st.markdown("**Reminder**: np.random.rnadint(min,max, size = x)")
+    st.markdown("**Reminder**: np.random.randint(min,max, size = x)")
 
 # ============================================
 # DATA DISPLAY PAGE
