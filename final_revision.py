@@ -46,6 +46,7 @@ if page == "🏠 Home":
     
     st.write("This guide demonstrates all Streamlit functions you need for the final exam.")
     st.write("st.write() - Generic text/data output (most flexible)")
+    st.wrtie(anything you want)
     
     st.markdown("**You can make text bold** and *italicized* using st.markdown()")
     st.write("st.markdown('text') - Supports **bold** with ** text **, *italic* with * text *, ~~strikethrough~~ with ~~ text ~~, bullet points with * text")
