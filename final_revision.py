@@ -269,6 +269,7 @@ with st.expander("📊 Another expander example"):
 
 with st.expander("💡 Tip"):
     st.markdown("Use expanders to hide detailed information and keep your page clean!")
+    st.write("Use expanders to hide detailed information and keep your page clean!")
 
 # ============================================
 # OPTION MENU DEMO
