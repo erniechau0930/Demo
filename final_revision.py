@@ -372,7 +372,8 @@ except ImportError:
     st.write("streamlit-option-menu not installed. Run: pip install streamlit-option-menu")
     st.write("""
     python
-    from streamlit_option_menu import option_menu """
+    from streamlit_option_menu import option_menu 
+    """
     
     selected = option_menu(
         menu_title="Main Menu",
