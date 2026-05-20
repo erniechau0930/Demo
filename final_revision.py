@@ -196,7 +196,7 @@ st.divider()
 st.header("st.tabs() - Tabbed Interface Demo")
 st.write("st.tabs(['tab1_name', 'tab2_name', 'tab3_name']) - Creates tabs")
 
-tab1, tab2, tab3 = st.tabs(["Tab 1", "Tab 2", "Tab 3"])
+tab1, tab2, tab3 = st.tabs(["Haha1", "Hehe2", "Tab 3"])
 
 with tab1:
     st.write("Content for Tab 1")
